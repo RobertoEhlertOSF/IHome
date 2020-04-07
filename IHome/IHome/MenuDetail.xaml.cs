@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace IHome
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuDetail : ContentView
+    public partial class MenuDetail : ContentPage
     {
         public MenuDetail()
         {
