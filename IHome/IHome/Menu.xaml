@@ -27,7 +27,6 @@
                           Text="IHome"
                           TextColor="White" FontSize="Large"/>
                     </Grid>
-
                     <TableView Intent="Menu">
                         <TableSection>
                             <ViewCell Tapped="GoControleAmbiente">

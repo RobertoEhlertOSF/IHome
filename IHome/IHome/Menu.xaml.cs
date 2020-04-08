@@ -19,17 +19,21 @@ namespace IHome
         }
 
         private void GoControleAmbiente(object sender, System.EventArgs e) 
-        { 
+        {
+            Detail.Navigation.PushAsync(new ControleAmbiente());
+            IsPresented = false;
         }
 
         private void GoLuzes(object sender, System.EventArgs e)
         {
-
+            Detail.Navigation.PushAsync(new Luzes());
+            IsPresented = false;
         }
 
         private void GoConsumoEnergia(object sender, System.EventArgs e)
         {
-
+            Detail.Navigation.PushAsync(new ConsumoEnergia());
+            IsPresented = false;
         }
 
     }
