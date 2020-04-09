@@ -2,13 +2,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
              mc:Ignorable="d"
              x:Class="IHome.ControleAmbiente">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Margin="20,20,20,20" 
+                           Text="Controle Geral de Consumo de Equipamentos" 
+                           FontAttributes="Bold" 
+                           FontSize="Medium"
+                           HorizontalTextAlignment="Center" >
+            </Label>
+            <ScrollView>
+                <StackLayout Margin="15" >
+                    <gauge:SfCircularGauge HeightRequest="250">
+                        <gauge:SfCircularGauge.Headers>
+                            <gauge:Header Text="Umidade" ForegroundColor="Black" TextSize="20" />
+                        </gauge:SfCircularGauge.Headers>
+                        <gauge:SfCircularGauge.Scales>
+                            <gauge:Scale>
+                                <gauge:Scale.Ranges>
+                                    <gauge:Range StartValue="0" EndValue="100"/>
+                                </gauge:Scale.Ranges>
+                                <gauge:Scale.Pointers>
+                                    <gauge:NeedlePointer Value="50"/>
+                                </gauge:Scale.Pointers>
+                            </gauge:Scale>
+                        </gauge:SfCircularGauge.Scales>
+                    </gauge:SfCircularGauge>
+
+                    <gauge:SfCircularGauge HeightRequest="250">
+                        <gauge:SfCircularGauge.Headers>
+                            <gauge:Header Text="Temperatura" ForegroundColor="Black" TextSize="20" />
+                        </gauge:SfCircularGauge.Headers>
+                        <gauge:SfCircularGauge.Scales>
+                            <gauge:Scale>
+                                <gauge:Scale.Ranges>
+                                    <gauge:Range StartValue="0" EndValue="100"/>
+                                </gauge:Scale.Ranges>
+                                <gauge:Scale.Pointers>
+                                    <gauge:NeedlePointer Value="50"/>
+                                </gauge:Scale.Pointers>
+                            </gauge:Scale>
+                        </gauge:SfCircularGauge.Scales>
+                    </gauge:SfCircularGauge>
+
+                    <gauge:SfCircularGauge HeightRequest="250">
+                        <gauge:SfCircularGauge.Headers>
+                            <gauge:Header Text="Pluviometro" ForegroundColor="Black" TextSize="20" />
+                        </gauge:SfCircularGauge.Headers>
+                    </gauge:SfCircularGauge>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

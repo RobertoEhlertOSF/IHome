@@ -67,45 +67,45 @@
                 TextColor="Black"
                 BackgroundColor="LightGray"
             />
-            <TableView Grid.Row="3" 
+                <TableView Grid.Row="3" 
                        Grid.Column="1" 
                        Grid.ColumnSpan="2"
                        Grid.RowSpan="3"
                        HorizontalOptions="FillAndExpand">
-                <TableSection>
-                    <SwitchCell 
+                    <TableSection>
+                        <SwitchCell 
                         Grid.Row="3"
                         Grid.Column="1"
                         x:Name="swQuarto"
                         OnColor="Green"
                         OnChanged="SwitchCell_OnChanged"
                         Text="Quarto"/>
-                    <SwitchCell 
+                        <SwitchCell 
                         Grid.Row="4"
                         Grid.Column="1"
                         x:Name="swSala"
                         OnChanged="SwitchCell_OnChanged"
                         OnColor="Green"
                         Text="Sala"/>
-                    <SwitchCell 
+                        <SwitchCell 
                         Grid.Row="5"
                         Grid.Column="1"
                         x:Name="swCozinha"
                         OnChanged="SwitchCell_OnChanged"
                         OnColor="Green"
                         Text="Cozinha"/>
-                    <SwitchCell 
+                        <SwitchCell 
                         Grid.Row="6"
                         Grid.Column="1"
                         x:Name="swBanheiro"
                         OnChanged="SwitchCell_OnChanged"
                         OnColor="Green"
                         Text="Banheiro"/>
-                </TableSection>
-            </TableView>
+                    </TableSection>
+                </TableView>
+
             <StackLayout Orientation="Horizontal" Grid.Row="7" 
-                         Grid.Column="1" Grid.ColumnSpan="2"
-                         >                        
+                         Grid.Column="1" Grid.ColumnSpan="2">
                 <Button 
                     Text="Ligar Todas"
                     Visual="Material"
@@ -113,7 +113,6 @@
                     Clicked="BtLigarTudo_Clicked"
                     HorizontalOptions="FillAndExpand"
                     BorderRadius="10"
-
                     />
                 <Button 
                     Text="Desligar Todas"

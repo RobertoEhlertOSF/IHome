@@ -14,6 +14,7 @@
     <PackageReference Include="Microcharts" Version="0.8.5-pre" />
     <PackageReference Include="Microcharts.Forms" Version="0.8.5-pre" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="18.1.0.43" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
   </ItemGroup>
@@ -37,5 +38,10 @@
     <EmbeddedResource Update="MenuDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>
