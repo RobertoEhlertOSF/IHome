@@ -16,13 +16,13 @@ namespace IHome
         public Luzes()
         {
             InitializeComponent();
-            //App.Current.MainPage = new NavigationPage();
         }
 
-        //private void GoToEquipamentos(object sender, EventArgs eventArgs)
-        //{
-        //    App.Current.MainPage.Navigation.PushAsync(new Equipamentos());
-        //}
+        private void GoToEquipamentos(object sender, EventArgs eventArgs)
+        {
+            Navigation.PushModalAsync(new Equipamentos());
+           
+        }
 
 
         private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)

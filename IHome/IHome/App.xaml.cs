@@ -13,7 +13,6 @@ namespace IHome
         public App()
         {
             InitializeComponent();
-
             MainPage = new Menu();
         }
 
@@ -23,7 +22,8 @@ namespace IHome
             {
                 if (appDatabase == null)
                 {
-                    appDatabase = new AppDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)));
+                    appDatabase = new AppDatabase(Path.Combine
+                        (Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "IHome.db"));
                 }
                 return appDatabase;
             }

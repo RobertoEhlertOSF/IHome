@@ -13,7 +13,7 @@ namespace IHome.Data
 
         public AppDatabase(string dbpath)
         {
-            _database = new SQLiteAsyncConnection(dbpath);
+            _database = new SQLiteAsyncConnection(dbpath, SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.ReadWrite);
             _database.CreateTableAsync<Evento>().Wait();
             _database.CreateTableAsync<Equipamento>().Wait();
         }

@@ -122,6 +122,15 @@
                     HorizontalOptions="FillAndExpand"
                     BorderRadius="10"
                     />
+                <Button 
+                    Text="Add Lampada"
+                    Visual="Material"
+                    TextColor="White"
+                    Clicked="GoToEquipamentos"
+                    BackgroundColor="Accent"
+                    HorizontalOptions="FillAndExpand"
+                    BorderRadius="10"
+                    />
             </StackLayout>
         </Grid>
     </ContentPage.Content>
