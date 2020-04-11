@@ -20,36 +20,46 @@ namespace IHome
         }
 
         public static readonly SKColor TextColor = SKColors.Black;
-
-        public static Chart[] CreateXamarinSample()
+        public async static Task<Chart[]> CreateXamarinSample()
         {
+
+            float consumoQuarto = (float) await App.Database.GetConsumoTotalPorHora(10);
+            float consumoSala = (float) await App.Database.GetConsumoTotalPorHora(11);
+            float consumoCozinha = (float) await App.Database.GetConsumoTotalPorHora(12);
+            float consumoBanheiro = (float) await App.Database.GetConsumoTotalPorHora(13);
+
+            //Quarto 10
+            //Sala 11
+            //Cozinha 12
+            //Banheiro 13
+
             var entries = new[]
             {
-                new ChartEntry(1.8f)
+                new ChartEntry(consumoQuarto)
                 {
                     Label = "Lampada Quarto",
-                    ValueLabel = "1.8 kWh",
+                    ValueLabel = consumoQuarto.ToString(),
                     Color = SKColor.Parse("#E52510"),
                     TextColor = TextColor
                 },
-                new ChartEntry(1.1f)
+                new ChartEntry(consumoBanheiro)
                 {
                     Label = "Lampada Banheiro",
-                    ValueLabel = "1.1 kWh",
+                    ValueLabel = consumoBanheiro.ToString(),
                     Color = SKColor.Parse("#003791"),
                     TextColor = TextColor
                 },
-                new ChartEntry(1.3f)
+                new ChartEntry(consumoCozinha)
                 {
                     Label = "Lampada Cozinha",
-                    ValueLabel = "1.3 kWh",
+                    ValueLabel = consumoCozinha.ToString(),
                     Color = SKColor.Parse("#107b10"),
                       TextColor = TextColor
                 },
-                new ChartEntry(1.7f)
+                new ChartEntry(consumoSala)
                 {
-                    Label = "Lampada Quarto 2",
-                    ValueLabel = "1.7 kWh",
+                    Label = "Lampada Sala",
+                    ValueLabel = consumoSala.ToString(),
                     Color = SKColor.Parse("#FFFF00"),
                     TextColor = TextColor
                 }
@@ -91,9 +101,9 @@ namespace IHome
                 //},
             };
         }
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
-            var charts = CreateXamarinSample();
+            var charts = await CreateXamarinSample();
             this.chart1.Chart = charts[0];
             //this.chart2.Chart = charts[1];
             //this.chart3.Chart = charts[2];

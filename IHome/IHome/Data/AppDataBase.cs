@@ -1,4 +1,5 @@
 ﻿using IHome.Models;
+using IHome.Views;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,28 @@ namespace IHome.Data
             _database.CreateTableAsync<Evento>().Wait();
             _database.CreateTableAsync<Equipamento>().Wait();
         }
+
+        public async Task<double> GetConsumoTotalPorHora(int idEquip)
+        {
+            double consumo = 0;
+            double consumoEmWattsHora = 0;
+
+            List<Evento> eventos = await _database.Table<Evento>()
+                            .Where(i => i.IDEquipamento == idEquip && i.EndDateTime != DateTime.MinValue)
+                            .ToListAsync();
+
+            foreach (Evento evento in eventos)
+            {
+                consumo +=  (evento.EndDateTime - evento.StartDateTime).TotalSeconds;
+            }
+
+            //Equipamento equipamento = await GetEquipamentoAsync(idEquip);
+            // consumoEmWattsHora = equipamento.ConsumoWatts;
+            consumoEmWattsHora = 40;
+
+            return (consumo/3600) * consumoEmWattsHora;            
+        }
+
 
         public Task<List<Equipamento>> GetEquipamentosAsync()
         {
@@ -47,15 +70,10 @@ namespace IHome.Data
 
         public Task<Evento> GetEventoByEquipamentoID(int idEquip)
         {
-            var evento = _database.Table<Evento>()
+            return _database.Table<Evento>()
                             .Where(i => i.IDEquipamento == idEquip && i.EndDateTime == DateTime.MinValue)
                             .OrderByDescending(i => i.StartDateTime)
-                            .FirstOrDefaultAsync();
-
-            var datafim = evento.Result;
-
-            return evento;
-            
+                            .FirstOrDefaultAsync();            
         }
         public Task<int> SaveEquipamentoAsync(Equipamento equipamento)
         {

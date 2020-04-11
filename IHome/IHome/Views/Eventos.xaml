@@ -7,6 +7,7 @@
              x:Class="IHome.Views.Eventos">
     <ContentPage.Content>
         <StackLayout>
+
             <ListView x:Name="lvEventos">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -16,7 +17,6 @@
                                 <Label Text="{Binding StartDateTime}"/>
                                 <Label Text="{Binding EndDateTime}"/>
                                 <Label Text="{Binding IDEquipamento}"/>
-                                <Label Text="{Binding CurrentState}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
