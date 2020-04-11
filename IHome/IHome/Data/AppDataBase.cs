@@ -14,6 +14,10 @@ namespace IHome.Data
         public AppDatabase(string dbpath)
         {
             _database = new SQLiteAsyncConnection(dbpath, SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.ReadWrite);
+#if RESET
+            _database.DropTableAsync<Evento>().Wait();
+            _database.DropTableAsync<Equipamento>().Wait();
+#endif
             _database.CreateTableAsync<Evento>().Wait();
             _database.CreateTableAsync<Equipamento>().Wait();
         }
@@ -39,6 +43,19 @@ namespace IHome.Data
             return _database.Table<Evento>()
                             .Where(i => i.IDEvento == id)
                             .FirstOrDefaultAsync();
+        }
+
+        public Task<Evento> GetEventoByEquipamentoID(int idEquip)
+        {
+            var evento = _database.Table<Evento>()
+                            .Where(i => i.IDEquipamento == idEquip && i.EndDateTime == DateTime.MinValue)
+                            .OrderByDescending(i => i.StartDateTime)
+                            .FirstOrDefaultAsync();
+
+            var datafim = evento.Result;
+
+            return evento;
+            
         }
         public Task<int> SaveEquipamentoAsync(Equipamento equipamento)
         {

@@ -1,4 +1,5 @@
-﻿using IHome.Views;
+﻿using IHome.Models;
+using IHome.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,7 @@ namespace IHome
 
         private void GoToEquipamentos(object sender, EventArgs eventArgs)
         {
-            Navigation.PushModalAsync(new Equipamentos());
-           
+            Navigation.PushModalAsync(new Equipamentos());           
         }
 
 
@@ -29,21 +29,30 @@ namespace IHome
         {
             SwitchCell cell = (SwitchCell)sender;
 
+            //Quarto 10
+            //Sala 11
+            //Cozinha 12
+            //Banheiro 13
+
             if (cell.On)
             {
                 switch (cell.Text)
                 {
                     case "Quarto":
                         btQuarto.BackgroundColor = Color.Yellow;
+                        RegistrarEvento(10, true);
                         break;
                     case "Sala":
                         btSala.BackgroundColor = Color.Yellow;
+                        RegistrarEvento(11, true);
                         break;
                     case "Cozinha":
                         btCozinha.BackgroundColor = Color.Yellow;
+                        RegistrarEvento(12, true);
                         break;
                     case "Banheiro":
                         btBanheiro.BackgroundColor = Color.Yellow;
+                        RegistrarEvento(13, true);
                         break;
                     default:
                         break;
@@ -55,19 +64,43 @@ namespace IHome
                 {
                     case "Quarto":
                         btQuarto.BackgroundColor = Color.LightGray;
+                        RegistrarEvento(10, false);
                         break;
                     case "Sala":
                         btSala.BackgroundColor = Color.LightGray;
+                        RegistrarEvento(11, false);
                         break;
                     case "Cozinha":
                         btCozinha.BackgroundColor = Color.LightGray;
+                        RegistrarEvento(12, false);
                         break;
                     case "Banheiro":
                         btBanheiro.BackgroundColor = Color.LightGray;
+                        RegistrarEvento(13, false);
                         break;
                     default:
                         break;
                 }
+            }
+        }
+
+        public async void RegistrarEvento(int idEquip, bool sw)
+        {
+            if (sw)
+            {
+                DateTime ? valor = null;
+                await App.Database.SaveEventosAsync(new Evento
+                {
+                    StartDateTime = DateTime.Now,
+                    IDEquipamento = idEquip,
+                    EndDateTime = valor.GetValueOrDefault()
+                });
+            }   
+            else
+            {
+                var evento = await App.Database.GetEventoByEquipamentoID(idEquip);
+                evento.EndDateTime = DateTime.Now;
+                await App.Database.SaveEventosAsync(evento);
             }
         }
 

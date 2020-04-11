@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IHome.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,12 @@ namespace IHome
         private void GoConsumoEnergia(object sender, System.EventArgs e)
         {
             Detail.Navigation.PushAsync(new ConsumoEnergia());
+            IsPresented = false;
+        }
+
+        private void GoEventos(object sender, EventArgs e)
+        {
+            Detail.Navigation.PushAsync(new Eventos());
             IsPresented = false;
         }
 

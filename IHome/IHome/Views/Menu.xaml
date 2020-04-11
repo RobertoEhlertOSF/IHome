@@ -46,6 +46,12 @@
                                     <Label Text="Consumo de Energia" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
+
+                            <ViewCell Tapped="GoEventos">
+                                <StackLayout Padding="15,10">
+                                    <Label Text="Ver eventos" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                            </ViewCell>
                         </TableSection>
                     </TableView>
                 </StackLayout>

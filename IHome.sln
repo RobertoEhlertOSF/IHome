@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IHome.Android", "IHome\IHom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IHome.iOS", "IHome\IHome.iOS\IHome.iOS.csproj", "{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IHome", "IHome\IHome\IHome.csproj", "{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IHome", "IHome\IHome\IHome.csproj", "{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +17,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|iPhone = Release|iPhone
 		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Reset|Any CPU = Reset|Any CPU
+		Reset|iPhone = Reset|iPhone
+		Reset|iPhoneSimulator = Reset|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -37,6 +40,15 @@ Global
 		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|Any CPU.ActiveCfg = Reset|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|Any CPU.Build.0 = Reset|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|Any CPU.Deploy.0 = Reset|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|iPhone.ActiveCfg = Reset|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|iPhone.Build.0 = Reset|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|iPhone.Deploy.0 = Reset|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|iPhoneSimulator.ActiveCfg = Reset|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|iPhoneSimulator.Build.0 = Reset|Any CPU
+		{883522A3-1118-4C3B-9AB6-F0DA78D8B47B}.Reset|iPhoneSimulator.Deploy.0 = Reset|Any CPU
 		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Debug|Any CPU.ActiveCfg = Debug|iPhone
 		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Debug|Any CPU.Deploy.0 = Debug|iPhone
@@ -55,6 +67,11 @@ Global
 		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Release|iPhoneSimulator.Deploy.0 = Release|iPhoneSimulator
+		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Reset|Any CPU.ActiveCfg = Reset|iPhone
+		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Reset|iPhone.ActiveCfg = Reset|iPhone
+		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Reset|iPhone.Build.0 = Reset|iPhone
+		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Reset|iPhoneSimulator.ActiveCfg = Reset|iPhoneSimulator
+		{6A6158A5-D535-4BE4-9CC9-1C8A85D273A9}.Reset|iPhoneSimulator.Build.0 = Reset|iPhoneSimulator
 		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -73,6 +90,12 @@ Global
 		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Reset|Any CPU.ActiveCfg = Reset|Any CPU
+		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Reset|Any CPU.Build.0 = Reset|Any CPU
+		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Reset|iPhone.ActiveCfg = Reset|Any CPU
+		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Reset|iPhone.Build.0 = Reset|Any CPU
+		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Reset|iPhoneSimulator.ActiveCfg = Reset|Any CPU
+		{4C91BF15-CA97-4599-9E1B-F1CB3E0B54B9}.Reset|iPhoneSimulator.Build.0 = Reset|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
