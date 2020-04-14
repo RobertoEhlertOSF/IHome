@@ -13,9 +13,17 @@
                            FontSize="Medium"
                            HorizontalTextAlignment="Center" >
             </Label>
+            <Button
+                Text="Atualizar"
+                BackgroundColor="Green"
+                Visual="Material"
+                Clicked="Atualizar"
+                >
+                
+            </Button>
             <ScrollView>
                 <StackLayout Margin="15" >
-                    <gauge:SfCircularGauge HeightRequest="250">
+                    <gauge:SfCircularGauge x:Name="cgUmidade" HeightRequest="250">
                         <gauge:SfCircularGauge.Headers>
                             <gauge:Header Text="Umidade" ForegroundColor="Black" TextSize="20" />
                         </gauge:SfCircularGauge.Headers>
@@ -25,7 +33,23 @@
                                     <gauge:Range StartValue="0" EndValue="100"/>
                                 </gauge:Scale.Ranges>
                                 <gauge:Scale.Pointers>
-                                    <gauge:NeedlePointer Value="50"/>
+                                    <gauge:NeedlePointer x:Name="cgnUmidade" Value="50"/>
+                                </gauge:Scale.Pointers>
+                            </gauge:Scale>
+                        </gauge:SfCircularGauge.Scales>
+                    </gauge:SfCircularGauge>
+
+                    <gauge:SfCircularGauge  x:Name="cgTemperatura" HeightRequest="250">
+                        <gauge:SfCircularGauge.Headers>
+                            <gauge:Header Text="Temperatura" ForegroundColor="Black" TextSize="20" />
+                        </gauge:SfCircularGauge.Headers>
+                        <gauge:SfCircularGauge.Scales>
+                            <gauge:Scale>
+                                <gauge:Scale.Ranges>
+                                    <gauge:Range StartValue="0" EndValue="100"/>
+                                </gauge:Scale.Ranges>
+                                <gauge:Scale.Pointers>
+                                    <gauge:NeedlePointer x:Name="cgnTemperatura" Value="50"/>
                                 </gauge:Scale.Pointers>
                             </gauge:Scale>
                         </gauge:SfCircularGauge.Scales>
@@ -33,7 +57,7 @@
 
                     <gauge:SfCircularGauge HeightRequest="250">
                         <gauge:SfCircularGauge.Headers>
-                            <gauge:Header Text="Temperatura" ForegroundColor="Black" TextSize="20" />
+                            <gauge:Header Text="Pluviometro" ForegroundColor="Black" TextSize="20" />
                         </gauge:SfCircularGauge.Headers>
                         <gauge:SfCircularGauge.Scales>
                             <gauge:Scale>
@@ -45,12 +69,6 @@
                                 </gauge:Scale.Pointers>
                             </gauge:Scale>
                         </gauge:SfCircularGauge.Scales>
-                    </gauge:SfCircularGauge>
-
-                    <gauge:SfCircularGauge HeightRequest="250">
-                        <gauge:SfCircularGauge.Headers>
-                            <gauge:Header Text="Pluviometro" ForegroundColor="Black" TextSize="20" />
-                        </gauge:SfCircularGauge.Headers>
                     </gauge:SfCircularGauge>
                 </StackLayout>
             </ScrollView>

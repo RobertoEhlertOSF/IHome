@@ -122,7 +122,7 @@
                     HorizontalOptions="FillAndExpand"
                     BorderRadius="10"
                     />
-                <Button 
+                <!--<Button 
                     Text="Add Lampada"
                     Visual="Material"
                     TextColor="White"
@@ -130,7 +130,7 @@
                     BackgroundColor="Accent"
                     HorizontalOptions="FillAndExpand"
                     BorderRadius="10"
-                    />
+                    />-->
             </StackLayout>
         </Grid>
     </ContentPage.Content>

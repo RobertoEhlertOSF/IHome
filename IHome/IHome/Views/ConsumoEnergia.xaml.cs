@@ -60,7 +60,7 @@ namespace IHome
                 {
                     Label = "Lampada Sala",
                     ValueLabel = consumoSala.ToString(),
-                    Color = SKColor.Parse("#FFFF00"),
+                    Color = SKColor.Parse("#B0E0E6"),
                     TextColor = TextColor
                 }
             };

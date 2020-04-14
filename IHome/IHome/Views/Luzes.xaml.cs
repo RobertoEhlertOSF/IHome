@@ -1,4 +1,5 @@
 ﻿using IHome.Models;
+using IHome.Services;
 using IHome.Views;
 using System;
 using System.Collections.Generic;
@@ -40,17 +41,21 @@ namespace IHome
                 {
                     case "Quarto":
                         btQuarto.BackgroundColor = Color.Yellow;
+                        ServiceIO.LigarIO(10);
                         RegistrarEvento(10, true);
                         break;
                     case "Sala":
                         btSala.BackgroundColor = Color.Yellow;
+                        ServiceIO.LigarIO(11);
                         RegistrarEvento(11, true);
                         break;
                     case "Cozinha":
                         btCozinha.BackgroundColor = Color.Yellow;
+                        ServiceIO.LigarIO(12);
                         RegistrarEvento(12, true);
                         break;
                     case "Banheiro":
+                        ServiceIO.LigarIO(13);
                         btBanheiro.BackgroundColor = Color.Yellow;
                         RegistrarEvento(13, true);
                         break;
@@ -64,18 +69,22 @@ namespace IHome
                 {
                     case "Quarto":
                         btQuarto.BackgroundColor = Color.LightGray;
+                        ServiceIO.DesligarIO(10);
                         RegistrarEvento(10, false);
                         break;
                     case "Sala":
                         btSala.BackgroundColor = Color.LightGray;
+                        ServiceIO.DesligarIO(11);
                         RegistrarEvento(11, false);
                         break;
                     case "Cozinha":
                         btCozinha.BackgroundColor = Color.LightGray;
+                        ServiceIO.DesligarIO(12);
                         RegistrarEvento(12, false);
                         break;
                     case "Banheiro":
                         btBanheiro.BackgroundColor = Color.LightGray;
+                        ServiceIO.DesligarIO(13);
                         RegistrarEvento(13, false);
                         break;
                     default:
