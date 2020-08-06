@@ -1,4 +1,5 @@
-﻿using IHome.Views;
+﻿using IHome.Services;
+using IHome.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,12 @@ namespace IHome
         {
             InitializeComponent();
             Detail = new NavigationPage(new MenuDetail());
+
+            if (string.IsNullOrEmpty(Util.GetServerConfig()))
+            {
+                Detail.Navigation.PushAsync(new Config());
+                IsPresented = false;
+            }
         }
 
         private void GoControleAmbiente(object sender, System.EventArgs e) 
@@ -40,6 +47,18 @@ namespace IHome
         private void GoEventos(object sender, EventArgs e)
         {
             Detail.Navigation.PushAsync(new Eventos());
+            IsPresented = false;
+        }
+
+        private void GoConfig(object sender, EventArgs e)
+        {
+            Detail.Navigation.PushAsync(new Config());
+            IsPresented = false;
+        }
+
+        private void GoSobre(object sender, EventArgs e)
+        {
+            Detail.Navigation.PushAsync(new Sobre());
             IsPresented = false;
         }
 

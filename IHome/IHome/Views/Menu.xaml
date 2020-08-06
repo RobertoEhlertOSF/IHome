@@ -30,26 +30,44 @@
                     <TableView Intent="Menu">
                         <TableSection>
                             <ViewCell Tapped="GoControleAmbiente">
-                                <StackLayout Padding="15,10">
-                                    <Label Text="Controle de Ambiente" VerticalTextAlignment="Center"/>
+                                <StackLayout Padding="15, 5, 15, 5" Orientation="Horizontal">
+                                    <Image Source="ajustar.png"></Image>
+                                    <Label Text="Controle de Ambiente" VerticalOptions="Center"/>
                                 </StackLayout>
                             </ViewCell>
 
-                            <ViewCell Tapped="GoLuzes">
-                                <StackLayout Padding="15,10">
+                            <ViewCell Tapped="GoLuzes" >
+                                <StackLayout Padding="15,10" Orientation="Horizontal">
+                                <Image Source="luminaria.png"></Image>
                                     <Label Text="Luzes" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
 
-                            <ViewCell Tapped="GoConsumoEnergia">
-                                <StackLayout Padding="15,10">
+                            <ViewCell Tapped="GoConsumoEnergia" >
+                                <StackLayout Padding="15,10" Orientation="Horizontal">
+                                    <Image Source="bateria.png"></Image>
                                     <Label Text="Consumo de Energia" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
 
                             <ViewCell Tapped="GoEventos">
-                                <StackLayout Padding="15,10">
+                                <StackLayout Padding="15,10" Orientation="Horizontal">
+                                    <Image Source="calendario.png"></Image>
                                     <Label Text="Ver eventos" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                            </ViewCell>
+
+                            <ViewCell Tapped="GoConfig">
+                                <StackLayout Padding="15,10" Orientation="Horizontal">
+                                    <Image Source="configuracoes.png"></Image>
+                                    <Label Text="Sobre" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                            </ViewCell>
+
+                            <ViewCell Tapped="GoSobre">
+                                <StackLayout Padding="15,10" Orientation="Horizontal">
+                                    <Image Source="informacao.png"></Image>
+                                    <Label Text="Sobre" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>

@@ -10,11 +10,13 @@ namespace IHome.Services
 {
     public static class ServiceIO
     {
+        public static string UrlServidor = Util.GetServerConfig();
+
         public static async void LigarIO(int led)
         {
             using (var client = new HttpClient())
             {
-                var uri = "http://192.168.0.27:80/" + led.ToString() + "LED=ON";
+                var uri = UrlServidor + led.ToString() + "LED=ON";
 
 
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
@@ -26,16 +28,12 @@ namespace IHome.Services
                 {
                     Log.Error("Error LigarIO", e.Message);
                 }
-
-
-               // var response = await client.GetAsync(uri);
-
-            }
+           }
         }
 
         public static async Task<string> GetTemperatura() 
         {
-            var uri = "http://192.168.0.27/TEMP=ON";
+            var uri = UrlServidor + "TEMP=ON";
             try
             {
                 using (var client = new HttpClient())
@@ -54,7 +52,7 @@ namespace IHome.Services
 
         public static async Task<string> GetUmidade()
         {
-            var uri = "http://192.168.0.27/UMID=ON";
+            var uri = UrlServidor + "UMID=ON";
             try
             {
                 using (var client = new HttpClient())
@@ -73,7 +71,7 @@ namespace IHome.Services
 
         public static async void DesligarIO(int led)
         {
-            var uri = "http://192.168.0.27/" + led.ToString() + "LED=OFF";
+            var uri = UrlServidor + led.ToString() + "LED=OFF";
 
             try { 
             using (var client = new HttpClient())

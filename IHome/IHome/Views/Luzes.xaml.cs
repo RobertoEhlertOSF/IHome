@@ -55,9 +55,9 @@ namespace IHome
                         RegistrarEvento(12, true);
                         break;
                     case "Banheiro":
-                        ServiceIO.LigarIO(13);
+                        ServiceIO.LigarIO(15);
                         btBanheiro.BackgroundColor = Color.Yellow;
-                        RegistrarEvento(13, true);
+                        RegistrarEvento(15, true);
                         break;
                     default:
                         break;
@@ -84,8 +84,8 @@ namespace IHome
                         break;
                     case "Banheiro":
                         btBanheiro.BackgroundColor = Color.LightGray;
-                        ServiceIO.DesligarIO(13);
-                        RegistrarEvento(13, false);
+                        ServiceIO.DesligarIO(15);
+                        RegistrarEvento(15, false);
                         break;
                     default:
                         break;
