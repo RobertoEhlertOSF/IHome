@@ -57,10 +57,18 @@
                                 </StackLayout>
                             </ViewCell>
 
+
+                            <ViewCell Tapped="GoCadastro">
+                                <StackLayout Padding="15,10" Orientation="Horizontal">
+                                    <Image Source="mais.png"></Image>
+                                    <Label Text="Novo Equipamento" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                            </ViewCell>
+
                             <ViewCell Tapped="GoConfig">
                                 <StackLayout Padding="15,10" Orientation="Horizontal">
                                     <Image Source="configuracoes.png"></Image>
-                                    <Label Text="Sobre" VerticalTextAlignment="Center"/>
+                                    <Label Text="Configurações" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
 

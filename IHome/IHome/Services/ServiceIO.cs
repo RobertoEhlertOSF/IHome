@@ -12,81 +12,53 @@ namespace IHome.Services
     {
         public static string UrlServidor = Util.GetServerConfig();
 
-        public static async void LigarIO(int led)
+        private static async Task<string> DoGet(string uri)
         {
-            using (var client = new HttpClient())
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
+            try
             {
-                var uri = UrlServidor + led.ToString() + "LED=ON";
-
-
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
-                try {
+                using (var client = new HttpClient())
+                {
                     var response = await client.SendAsync(request);
-
-                }
-                catch(Exception e)
-                {
-                    Log.Error("Error LigarIO", e.Message);
-                }
-           }
-        }
-
-        public static async Task<string> GetTemperatura() 
-        {
-            var uri = UrlServidor + "TEMP=ON";
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    var response = await client.GetAsync(uri);
                     return await response.Content.ReadAsStringAsync();
-                }               
+                };
 
             }
             catch (Exception e)
             {
-                Log.Error("Error GetTemperatura", e.Message);
-                return e.Message;
+                throw new Exception("Erro ao enviar: " + uri + "\nDetalhes: " + e.Message);
             }
         }
 
-        public static async Task<string> GetUmidade()
+        public static async Task<string> ActionIO(int pin, EnumAction action)
         {
-            var uri = UrlServidor + "UMID=ON";
+            string uri = string.Empty;
+            switch (action)
+            {
+                case EnumAction.ON:
+                    uri = UrlServidor + "PIN" + pin.ToString() + "ON";
+                    break;
+
+                case EnumAction.OFF:
+                    uri = UrlServidor + "PIN" + pin.ToString() + "OFF";
+                    break;
+
+                case EnumAction.TEMPERATURE:
+                    uri = UrlServidor + "TEMP=ON";
+                    break;
+
+                case EnumAction.HUMIDITY:
+                    uri = UrlServidor + "UMID=ON";
+                    break;
+            }
             try
             {
-                using (var client = new HttpClient())
-                {
-                    var response = await client.GetAsync(uri);
-                    return await response.Content.ReadAsStringAsync();
-                }
-
+               return await DoGet(uri);
             }
             catch (Exception e)
             {
-                Log.Error("Error GetTemperatura", e.Message);
-                return e.Message;
-            }
-        }
-
-        public static async void DesligarIO(int led)
-        {
-            var uri = UrlServidor + led.ToString() + "LED=OFF";
-
-            try { 
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetAsync(uri);
-                // string content = await response.Content.ReadAsStringAsync();
-
-            }
-            }
-            catch(Exception e)
-            {
-                Log.Error("Error DesligarIO", e.Message);
-
+                return e.Message;              
             }
         }
     }
-
 }

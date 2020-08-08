@@ -55,10 +55,14 @@ namespace IHome
             Detail.Navigation.PushAsync(new Config());
             IsPresented = false;
         }
-
         private void GoSobre(object sender, EventArgs e)
         {
             Detail.Navigation.PushAsync(new Sobre());
+            IsPresented = false;
+        }
+        private void GoCadastro(object sender, EventArgs e)
+        {
+            Detail.Navigation.PushAsync(new Equipamentos());
             IsPresented = false;
         }
 

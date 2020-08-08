@@ -7,9 +7,7 @@
              x:Class="IHome.MenuDetail">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Menu Principal"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Image Source="teste.jpg" Aspect="AspectFill"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

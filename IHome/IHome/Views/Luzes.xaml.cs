@@ -26,14 +26,9 @@ namespace IHome
         }
 
 
-        private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
+        private async void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
         {
             SwitchCell cell = (SwitchCell)sender;
-
-            //Quarto 10
-            //Sala 11
-            //Cozinha 12
-            //Banheiro 13
 
             if (cell.On)
             {
@@ -41,21 +36,21 @@ namespace IHome
                 {
                     case "Quarto":
                         btQuarto.BackgroundColor = Color.Yellow;
-                        ServiceIO.LigarIO(10);
+                        await ServiceIO.ActionIO(10, EnumAction.ON);
                         RegistrarEvento(10, true);
                         break;
                     case "Sala":
                         btSala.BackgroundColor = Color.Yellow;
-                        ServiceIO.LigarIO(11);
+                        await ServiceIO.ActionIO(10, EnumAction.ON);
                         RegistrarEvento(11, true);
                         break;
                     case "Cozinha":
                         btCozinha.BackgroundColor = Color.Yellow;
-                        ServiceIO.LigarIO(12);
+                        await ServiceIO.ActionIO(10, EnumAction.ON);
                         RegistrarEvento(12, true);
                         break;
                     case "Banheiro":
-                        ServiceIO.LigarIO(15);
+                        await ServiceIO.ActionIO(10, EnumAction.ON);
                         btBanheiro.BackgroundColor = Color.Yellow;
                         RegistrarEvento(15, true);
                         break;
@@ -69,22 +64,22 @@ namespace IHome
                 {
                     case "Quarto":
                         btQuarto.BackgroundColor = Color.LightGray;
-                        ServiceIO.DesligarIO(10);
+                        await ServiceIO.ActionIO(10, EnumAction.OFF);
                         RegistrarEvento(10, false);
                         break;
                     case "Sala":
                         btSala.BackgroundColor = Color.LightGray;
-                        ServiceIO.DesligarIO(11);
+                        await ServiceIO.ActionIO(10, EnumAction.OFF);
                         RegistrarEvento(11, false);
                         break;
                     case "Cozinha":
                         btCozinha.BackgroundColor = Color.LightGray;
-                        ServiceIO.DesligarIO(12);
+                        await ServiceIO.ActionIO(10, EnumAction.OFF);
                         RegistrarEvento(12, false);
                         break;
                     case "Banheiro":
                         btBanheiro.BackgroundColor = Color.LightGray;
-                        ServiceIO.DesligarIO(15);
+                        await ServiceIO.ActionIO(10, EnumAction.OFF);
                         RegistrarEvento(15, false);
                         break;
                     default:
@@ -93,7 +88,7 @@ namespace IHome
             }
         }
 
-        public async void RegistrarEvento(int idEquip, bool sw)
+        public async void RegistrarEvento (int idEquip, bool sw)
         {
             if (sw)
             {
