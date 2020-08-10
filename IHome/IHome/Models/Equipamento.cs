@@ -11,6 +11,12 @@ namespace IHome.Models
         public int ID { get; set; }
         public string Nome { get; set; }
         public double ConsumoWatts { get; set; }
+        public int Pino { get; set; }
         public bool State { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1} - {2}W Pin:{3}",ID, Nome, ConsumoWatts, Pino);
+        }
     }
 }

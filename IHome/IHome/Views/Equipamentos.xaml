@@ -11,13 +11,14 @@
                Placeholder="Digite o nome" />
             <Entry x:Name="txtConsumoWatts"
                Placeholder="Digite o Consumo" />
+            <Entry x:Name="txtPino"
+               Placeholder="Digite o Pino utilizado" />
             <Button Text="Adicionar ao banco de dados"
                 Clicked="CadastrarEquipamento" />
             <ListView x:Name="listView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Nome}"
-                                  Detail="{Binding Consumo}"/>
+                        <SwitchCell Text="{Binding}" On="{Binding State}"  ></SwitchCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

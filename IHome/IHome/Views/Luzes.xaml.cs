@@ -1,4 +1,5 @@
-﻿using IHome.Models;
+﻿using IHome.Data;
+using IHome.Models;
 using IHome.Services;
 using IHome.Views;
 using System;
@@ -24,14 +25,25 @@ namespace IHome
         {
             Navigation.PushModalAsync(new Equipamentos());           
         }
-
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            listView.ItemsSource = await App.Database.GetEquipamentosAsync();
+        } 
 
         private async void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
         {
-            SwitchCell cell = (SwitchCell)sender;
+            var changed = ((SwitchCell)sender).BindingContext as Equipamento;
+            //DisplayAlert("Selecionado", e.Value.ToString(), cancel: "OK");
+            RegistrarEvento(changed.ID, e.Value);
+            await ServiceIO.ActionIO(changed.Pino, e.Value);
+            await App.Database.SaveEquipamentoAsync(changed);
 
+            /*
             if (cell.On)
             {
+                sender.
+
                 switch (cell.Text)
                 {
                     case "Quarto":
@@ -85,7 +97,7 @@ namespace IHome
                     default:
                         break;
                 }
-            }
+            }*/
         }
 
         public async void RegistrarEvento (int idEquip, bool sw)
@@ -110,7 +122,7 @@ namespace IHome
 
         private void BtLigarTudo_Clicked(object sender, EventArgs e)
         {
-            btQuarto.BackgroundColor = Color.Yellow;
+         /*   btQuarto.BackgroundColor = Color.Yellow;
             btSala.BackgroundColor = Color.Yellow;
             btCozinha.BackgroundColor = Color.Yellow;
             btBanheiro.BackgroundColor = Color.Yellow;
@@ -118,11 +130,12 @@ namespace IHome
             swQuarto.On = true;
             swSala.On = true;
             swCozinha.On = true;
-            swBanheiro.On = true;
+            swBanheiro.On = true;*/
         }
 
         private void BtDesligarTudo_Clicked(object sender, EventArgs e)
         {
+            /*
             btQuarto.BackgroundColor = Color.LightGray;
             btSala.BackgroundColor = Color.LightGray;
             btCozinha.BackgroundColor = Color.LightGray;
@@ -131,7 +144,7 @@ namespace IHome
             swQuarto.On = false;
             swSala.On = false;
             swCozinha.On = false;
-            swBanheiro.On = false;
+            swBanheiro.On = false;*/
         }
     }
 }

@@ -5,133 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="IHome.Luzes">
-    <ContentPage.Content>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="25"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
 
-            </Grid.RowDefinitions>
-            <Label
-                Grid.Column="0"
-                Grid.Row="0"
-                Grid.ColumnSpan="4"
-                LineBreakMode="NoWrap"
-                Text="Controle de Lâmpadas"
-                HorizontalOptions="CenterAndExpand" 
-                FontSize="Large"
-                Margin="20">
-            </Label>
-            <Button
-                Grid.Column="1"
-                Grid.Row="1"
-                x:Name="btQuarto"
-                Text="Quarto"
-                TextColor="Black"
-                BackgroundColor="LightGray"
-            />
-            <Button
-                Grid.Column="2"
-                Grid.Row="1"
-                x:Name="btSala"
-                Text="Sala"
-                TextColor="Black"
-                BackgroundColor="LightGray"
-            />
-            <Button
-                Grid.Column="1"
-                Grid.Row="2"
-                x:Name="btCozinha"
-                Text="Cozinha"
-                TextColor="Black"
-                BackgroundColor="LightGray"
-            />
-            <Button
-                Grid.Column="2"
-                Grid.Row="2"
-                x:Name="btBanheiro"
-                Text="Banheiro"
-                TextColor="Black"
-                BackgroundColor="LightGray"
-            />
-            <TableView Grid.Row="3" 
-                       Grid.Column="1" 
-                       Grid.ColumnSpan="2"
-                       Grid.RowSpan="3"
-                       HorizontalOptions="FillAndExpand">
-                <TableSection>
-                    <SwitchCell 
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        x:Name="swQuarto"
-                        OnColor="Green"
-                        OnChanged="SwitchCell_OnChanged"
-                        Text="Quarto"/>
-                    <SwitchCell 
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        x:Name="swSala"
-                        OnChanged="SwitchCell_OnChanged"
-                        OnColor="Green"
-                        Text="Sala"/>
-                    <SwitchCell 
-                        Grid.Row="5"
-                        Grid.Column="1"
-                        x:Name="swCozinha"
-                        OnChanged="SwitchCell_OnChanged"
-                        OnColor="Green"
-                        Text="Cozinha"/>
-                    <SwitchCell 
-                        Grid.Row="6"
-                        Grid.Column="1"
-                        x:Name="swBanheiro"
-                        OnChanged="SwitchCell_OnChanged"
-                        OnColor="Green"
-                        Text="Banheiro"/>
-                </TableSection>
-            </TableView>
+            <ListView x:Name="listView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <SwitchCell                             
+                            Text="{Binding}"
+                            On="{Binding State}" 
+                            OnChanged="SwitchCell_OnChanged"      
+                            OnColor="Green"/>
+                     </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="7" 
-                         Grid.Column="1" Grid.ColumnSpan="2">
-                <Button 
-                    Text="Ligar Todas"
-                    Visual="Material"
-                    BackgroundColor="LightGreen"
-                    Clicked="BtLigarTudo_Clicked"
-                    HorizontalOptions="FillAndExpand"
-                    BorderRadius="10"
-                    />
-                <Button 
-                    Text="Desligar Todas"
-                    Visual="Material"
-                    Clicked="BtDesligarTudo_Clicked"
-                    BackgroundColor="PaleVioletRed"
-                    HorizontalOptions="FillAndExpand"
-                    BorderRadius="10"
-                    />
-                <!--<Button 
-                    Text="Add Lampada"
-                    Visual="Material"
-                    TextColor="White"
-                    Clicked="GoToEquipamentos"
-                    BackgroundColor="Accent"
-                    HorizontalOptions="FillAndExpand"
-                    BorderRadius="10"
-                    />-->
-            </StackLayout>
-        </Grid>
-    </ContentPage.Content>
 </ContentPage>

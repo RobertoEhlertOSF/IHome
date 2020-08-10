@@ -32,14 +32,18 @@ namespace IHome.Views
                 {
                     Nome = txtNome.Text,
                     ConsumoWatts = Int32.Parse(txtConsumoWatts.Text),
-                    State = false
+                    State = false,
+                    Pino = Int32.Parse(txtPino.Text)                    
                 });
             }
 
             txtNome.Text = string.Empty;
             txtConsumoWatts.Text = string.Empty;
+            txtPino.Text = string.Empty;
             listView.ItemsSource = await App.Database.GetEquipamentosAsync();
 
         }
+
+
     }
 }

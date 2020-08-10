@@ -24,8 +24,8 @@ namespace IHome
         {
             try
             {
-                cgnUmidade.Value = Double.Parse(await ServiceIO.GetUmidade()) / 100;
-                cgnTemperatura.Value = Double.Parse(await ServiceIO.GetTemperatura())/100;
+             //   cgnUmidade.Value = Double.Parse(await ServiceIO.GetUmidade()) / 100;
+             //   cgnTemperatura.Value = Double.Parse(await ServiceIO.GetTemperatura())/100;
             }
             catch (Exception ex)
             {

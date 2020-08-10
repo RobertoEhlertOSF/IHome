@@ -10,11 +10,10 @@ namespace IHome.Services
 {
     public static class ServiceIO
     {
-        public static string UrlServidor = Util.GetServerConfig();
 
         private static async Task<string> DoGet(string uri)
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
+        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
             try
             {
                 using (var client = new HttpClient())
@@ -30,27 +29,27 @@ namespace IHome.Services
             }
         }
 
-        public static async Task<string> ActionIO(int pin, EnumAction action)
-        {
-            string uri = string.Empty;
-            switch (action)
+        public static async Task<string> ActionIO(int pin, bool value)
+        {        
+        string UrlServidor = Util.GetServerConfig();
+
+        string uri;
+            if (value)
             {
-                case EnumAction.ON:
-                    uri = UrlServidor + "PIN" + pin.ToString() + "ON";
-                    break;
-
-                case EnumAction.OFF:
-                    uri = UrlServidor + "PIN" + pin.ToString() + "OFF";
-                    break;
-
-                case EnumAction.TEMPERATURE:
+                uri = UrlServidor + "PIN" + pin.ToString() + "=ON";
+            }
+            else
+            {
+                uri = UrlServidor + "PIN" + pin.ToString() + "=OFF";
+            }
+                /*case EnumAction.TEMPERATURE:
                     uri = UrlServidor + "TEMP=ON";
                     break;
 
                 case EnumAction.HUMIDITY:
                     uri = UrlServidor + "UMID=ON";
-                    break;
-            }
+                    break;*/
+            
             try
             {
                return await DoGet(uri);
