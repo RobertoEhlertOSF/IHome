@@ -39,7 +39,7 @@
                             <ViewCell Tapped="GoLuzes" >
                                 <StackLayout Padding="15,10" Orientation="Horizontal">
                                 <Image Source="luminaria.png"></Image>
-                                    <Label Text="Luzes" VerticalTextAlignment="Center"/>
+                                    <Label Text="Controle Equipamentos" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
 

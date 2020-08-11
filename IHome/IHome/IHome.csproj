@@ -47,7 +47,7 @@
     <EmbeddedResource Update="Views\Eventos.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Luzes.xaml">
+    <EmbeddedResource Update="Views\ControleEquipamentos.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="MasterDetailPage1Detail.xaml">
@@ -66,5 +66,11 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\ControleEquipamentos.xaml.cs">
+      <DependentUpon>ControleEquipamentos.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

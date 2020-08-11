@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:IHome.ViewModel"
              mc:Ignorable="d"
-             x:Class="IHome.Views.Equipamentos">
-  <ContentPage.Content>
-      <StackLayout>
+             x:Class="IHome.Views.Equipamentos"
+             BindingContext="{Binding Source={RelativeSource Self}, Path=DefaultViewModel}">
+
+    <ContentPage.Content>
+      <StackLayout Padding="10">
             <Entry x:Name="txtNome"
                Placeholder="Digite o nome" />
             <Entry x:Name="txtConsumoWatts"
@@ -15,13 +18,23 @@
                Placeholder="Digite o Pino utilizado" />
             <Button Text="Adicionar ao banco de dados"
                 Clicked="CadastrarEquipamento" />
-            <ListView x:Name="listView">
+            <ListView x:Name="listView"  ItemsSource="{Binding Equipamentos}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <SwitchCell Text="{Binding}" On="{Binding State}"  ></SwitchCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding}" VerticalOptions="Center"/>
+                                <Button Text="Apagar" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:EquipamentoListViewModel}}, Path=ApagarEquipamento}"                                                                             
+                                        CommandParameter="{Binding}"
+                                        Clicked="AtualizarLista"
+                                         
+                                    HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-  </ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>

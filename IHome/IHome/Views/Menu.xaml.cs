@@ -34,7 +34,7 @@ namespace IHome
 
         private void GoLuzes(object sender, System.EventArgs e)
         {
-            Detail.Navigation.PushAsync(new Luzes());
+            Detail.Navigation.PushAsync(new ControleEquipamentos());
             IsPresented = false;
         }
 

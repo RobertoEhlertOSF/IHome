@@ -13,7 +13,7 @@ namespace IHome.Services
 
         private static async Task<string> DoGet(string uri)
         {
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
             try
             {
                 using (var client = new HttpClient())
@@ -30,10 +30,10 @@ namespace IHome.Services
         }
 
         public static async Task<string> ActionIO(int pin, bool value)
-        {        
-        string UrlServidor = Util.GetServerConfig();
+        {
+            string UrlServidor = Util.GetServerConfig();
 
-        string uri;
+            string uri;
             if (value)
             {
                 uri = UrlServidor + "PIN" + pin.ToString() + "=ON";
@@ -42,21 +42,14 @@ namespace IHome.Services
             {
                 uri = UrlServidor + "PIN" + pin.ToString() + "=OFF";
             }
-                /*case EnumAction.TEMPERATURE:
-                    uri = UrlServidor + "TEMP=ON";
-                    break;
-
-                case EnumAction.HUMIDITY:
-                    uri = UrlServidor + "UMID=ON";
-                    break;*/
             
             try
             {
-               return await DoGet(uri);
+                return await DoGet(uri);
             }
             catch (Exception e)
             {
-                return e.Message;              
+                return e.Message;
             }
         }
     }
