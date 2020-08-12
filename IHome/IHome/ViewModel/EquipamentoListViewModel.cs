@@ -1,7 +1,7 @@
 ﻿using IHome.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -25,6 +25,13 @@ namespace IHome.ViewModel
                     await App.Database.DeleteEquipamentoAsync(equip as Equipamento);
                 }
             });
+        }
+        public List<string> TipoEquipamento
+        {
+            get
+            {
+                return Enum.GetNames(typeof(Equipamento)).Select(b => b.ToString()).ToList();
+            }
         }
     }
 }

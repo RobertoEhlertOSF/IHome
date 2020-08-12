@@ -33,7 +33,8 @@ namespace IHome.Views
                     Nome = txtNome.Text,
                     ConsumoWatts = Int32.Parse(txtConsumoWatts.Text),
                     State = false,
-                    Pino = Int32.Parse(txtPino.Text)                    
+                    Pino = Int32.Parse(txtPino.Text),
+                    Tipo = PckTipo.SelectedItem.ToString()
                 });
             }
 

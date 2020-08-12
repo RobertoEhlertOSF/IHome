@@ -35,7 +35,7 @@ namespace IHome
         {
             var changed = ((SwitchCell)sender).BindingContext as Equipamento;
             RegistrarEvento(changed.ID, e.Value);
-            await ServiceIO.ActionIO(changed.Pino, e.Value);
+            await ServiceIO.ActionIO(changed.Pino, e.Value, changed.Tipo);
             await App.Database.SaveEquipamentoAsync(changed);
         }
 

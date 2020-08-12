@@ -16,6 +16,14 @@
                Placeholder="Digite o Consumo" />
             <Entry x:Name="txtPino"
                Placeholder="Digite o Pino utilizado" />
+            <Picker x:Name="PckTipo" 
+                    Title="--Selecione o Tipo--">
+                <Picker.Items>
+                    <x:String>Entrada</x:String>
+                    <x:String>Saida</x:String>
+                    <x:String>Analogico</x:String>
+                </Picker.Items>
+            </Picker>
             <Button Text="Adicionar ao banco de dados"
                 Clicked="CadastrarEquipamento" />
             <ListView x:Name="listView"  ItemsSource="{Binding Equipamentos}">
@@ -27,7 +35,6 @@
                                 <Button Text="Apagar" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:EquipamentoListViewModel}}, Path=ApagarEquipamento}"                                                                             
                                         CommandParameter="{Binding}"
-                                        Clicked="AtualizarLista"
                                          
                                     HorizontalOptions="EndAndExpand" />
                             </StackLayout>

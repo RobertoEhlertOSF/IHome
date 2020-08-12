@@ -29,18 +29,33 @@ namespace IHome.Services
             }
         }
 
-        public static async Task<string> ActionIO(int pin, bool value)
+        public static async Task<string> ActionIO(int pin, bool value, string tipo)
         {
             string UrlServidor = Util.GetServerConfig();
+            string type = string.Empty;
 
+            switch (tipo)
+            {
+                case ("Entrada"):
+                    type = "PIN";
+                    break;
+                case ("Saida"):
+                    type = "POU";
+                    break;
+                case ("Analogico"):
+                    type = "PAN";
+                    break;
+                default:
+                    break;
+            }
             string uri;
             if (value)
             {
-                uri = UrlServidor + "PIN" + pin.ToString() + "=ON";
+                uri = UrlServidor + type + pin.ToString() + "=ON";
             }
             else
             {
-                uri = UrlServidor + "PIN" + pin.ToString() + "=OFF";
+                uri = UrlServidor + type + pin.ToString() + "=OFF";
             }
             
             try
