@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Microcharts;
 using SkiaSharp;
 using Xamarin.Forms.Xaml;
+using IHome.Models;
 
 namespace IHome
 {
@@ -20,20 +21,70 @@ namespace IHome
         }
 
         public static readonly SKColor TextColor = SKColors.Black;
+
+        public static async Task<List<ChartEntry>> GetGraficos()
+        {
+            List<Equipamento> equipamentos = await App.Database.GetEquipamentosAsync();
+            List<ChartEntry> charts = new List<ChartEntry>();
+            foreach (var equip in equipamentos)
+            {
+                float consumo = (float)await App.Database.GetConsumoTotalPorHora(equip.ID);
+
+                ChartEntry chart = new ChartEntry(consumo)
+                {
+                    Label = equip.Nome,
+                    ValueLabel = consumo.ToString(),
+                    Color = SKColor.Parse("#E52510"),
+                    TextColor = TextColor
+                };
+                charts.Add(chart);
+            }
+            return charts;
+        }
         public async static Task<Chart[]> CreateXamarinSample()
         {
+           /* float consumoQuarto = (float)await App.Database.GetConsumoTotalPorHora(10);
+            float consumoSala = (float)await App.Database.GetConsumoTotalPorHora(11);
+            float consumoCozinha = (float)await App.Database.GetConsumoTotalPorHora(12);
+            float consumoBanheiro = (float)await App.Database.GetConsumoTotalPorHora(13);
 
-            float consumoQuarto = (float) await App.Database.GetConsumoTotalPorHora(10);
-            float consumoSala = (float) await App.Database.GetConsumoTotalPorHora(11);
-            float consumoCozinha = (float) await App.Database.GetConsumoTotalPorHora(12);
-            float consumoBanheiro = (float) await App.Database.GetConsumoTotalPorHora(13);
+            List<ChartEntry> entries = new List<ChartEntry>();
 
-            //Quarto 10
-            //Sala 11
-            //Cozinha 12
-            //Banheiro 13
+            ChartEntry chart1 = new ChartEntry(consumoQuarto)
+            {
+                Label = "Lampada Quarto",
+                ValueLabel = consumoQuarto.ToString(),
+                Color = SKColor.Parse("#E52510"),
+                TextColor = TextColor
+            };
+            ChartEntry chart2 = new ChartEntry(consumoBanheiro)
+            {
+                Label = "Lampada Banheiro",
+                ValueLabel = consumoBanheiro.ToString(),
+                Color = SKColor.Parse("#003791"),
+                TextColor = TextColor
+            };
+            ChartEntry chart3 = new ChartEntry(consumoCozinha)
+            {
+                Label = "Lampada Cozinha",
+                ValueLabel = consumoCozinha.ToString(),
+                Color = SKColor.Parse("#107b10"),
+                TextColor = TextColor
+            };
+            ChartEntry chart4 = new ChartEntry(consumoSala)
+            {
+                Label = "Lampada Sala",
+                ValueLabel = consumoSala.ToString(),
+                Color = SKColor.Parse("#B0E0E6"),
+                TextColor = TextColor
+            };
 
-            var entries = new[]
+            entries.Add(chart1);
+            entries.Add(chart2);
+            entries.Add(chart3);
+            entries.Add(chart4);
+
+            /*var entries = new[]
             {
                 new ChartEntry(consumoQuarto)
                 {
@@ -63,42 +114,15 @@ namespace IHome
                     Color = SKColor.Parse("#B0E0E6"),
                     TextColor = TextColor
                 }
-            };
+            };*/
 
             return new Chart[]
             {
                 new BarChart()
                 {
-                  Entries = entries ,
+                  Entries = await GetGraficos() ,
                   LabelTextSize = 35
                 },
-                //new PointChart()
-                // {
-                //  Entries = entries ,
-                //  LabelTextSize = 35
-                //  },
-                //new LineChart()
-                //{
-                //    Entries = entries,
-                //    LineMode = LineMode.Straight,
-                //    LineSize = 8,
-                //    PointMode = PointMode.Square,
-                //    PointSize = 18,
-                //    LabelTextSize = 35
-                //},
-                //new DonutChart()
-                //{ Entries = entries,
-                //  LabelTextSize = 35
-                //},
-                //new RadialGaugeChart()
-                //{ Entries = entries ,
-                //  LabelTextSize = 35
-                //},
-                //new RadarChart()
-                //{
-                //  Entries = entries ,
-                //  LabelTextSize = 35
-                //},
             };
         }
         protected async override void OnAppearing()

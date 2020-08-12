@@ -23,7 +23,7 @@ namespace IHome.Data
             _database.CreateTableAsync<Equipamento>().Wait();
         }
 
-        public async Task<double> GetConsumoTotalPorHora(int idEquip)
+        public async Task<double> GetConsumoTotalPorMinuto(int idEquip)
         {
             double consumo = 0;
             double consumoEmWattsHora = 0;
@@ -37,11 +37,11 @@ namespace IHome.Data
                 consumo +=  (evento.EndDateTime - evento.StartDateTime).TotalSeconds;
             }
 
-            //Equipamento equipamento = await GetEquipamentoAsync(idEquip);
-            // consumoEmWattsHora = equipamento.ConsumoWatts;
-            consumoEmWattsHora = 40;
+            Equipamento equipamento = await GetEquipamentoAsync(idEquip);
+            consumoEmWattsHora = equipamento.ConsumoWatts;
+            
 
-            return (consumo/3600) * consumoEmWattsHora;            
+            return (consumo/60) * consumoEmWattsHora;            
         }
 
 

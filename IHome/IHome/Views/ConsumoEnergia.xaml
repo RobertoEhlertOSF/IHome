@@ -8,9 +8,9 @@
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
-                <StackLayout Spacing="10" BackgroundColor="#EEEEEE">
+                <StackLayout Spacing="5" BackgroundColor="#EEEEEE">
                     <Label Margin="20,20,20,20" 
-                           Text="Controle Geral de Consumo de Equipamentos" 
+                           Text="Consumo de Equipamentos" 
                            FontAttributes="Bold" 
                            FontSize="Medium"
                            HorizontalTextAlignment="Center" >
