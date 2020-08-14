@@ -13,14 +13,7 @@
                            FontSize="Medium"
                            HorizontalTextAlignment="Center" >
             </Label>
-            <Button
-                Text="Atualizar"
-                BackgroundColor="Green"
-                Visual="Material"
-                Clicked="Atualizar"
-                >
-                
-            </Button>
+
            <!-- <ScrollView>
                 <StackLayout Margin="15" >
                     <gauge:SfCircularGauge x:Name="cgUmidade" HeightRequest="250">

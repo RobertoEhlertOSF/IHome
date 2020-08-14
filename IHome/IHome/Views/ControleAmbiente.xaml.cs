@@ -1,5 +1,6 @@
 ﻿using Android.Util;
 using IHome.Models;
+using IHome.Services;
 using Syncfusion.SfGauge.XForms;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,10 @@ namespace IHome
             ICommand atualizar = new Command(() =>
             {
                 Atualizar();
+                refresh.IsRefreshing = false;
             });
+
+            refresh.Command = atualizar;
 
             List<Equipamento> equipamentos = await App.Database.GetEquipamentosAnalog();
             foreach (Equipamento equipamento in equipamentos)
@@ -61,16 +65,20 @@ namespace IHome
             }
             scroll.Content = stack;
             refresh.Content = scroll;
-            this.Content = scroll;
+            this.Content = refresh;
 
         }
 
         protected async void Atualizar()
         {
             try
-            {                
-                //   cgnUmidade.Value = Double.Parse(await ServiceIO.GetUmidade()) / 100;
-                //   cgnTemperatura.Value = Double.Parse(await ServiceIO.GetTemperatura())/100;
+            {
+                List<Equipamento> equipamentos = await App.Database.GetEquipamentosAnalog();
+                foreach (Equipamento equipamento in equipamentos)
+                {
+                    equipamento.Value =  Double.Parse(ServiceIO.ActionIO(equipamento.Pino, true, equipamento.Tipo).ToString()) / 100;
+                }
+
             }
             catch (Exception ex)
             {
