@@ -3,29 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="IHome.Menu">
     <MasterDetailPage.Master>
         <ContentPage Title="Menu" Padding="0">
             <ContentPage.Content>
                 <StackLayout>
-                    <Grid BackgroundColor="Black">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                        </Grid.ColumnDefinitions>
+                    <Grid BackgroundColor="Transparent">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="80"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Label
-                          Grid.Column="1"
-                          Grid.Row="2"
-                          Text="IHome"
-                          TextColor="White" FontSize="Large"/>
+                        <Grid>
+                            <Image Source="fractals.jpg" Aspect="AspectFill" />
+                            <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <controls:CircleImage BorderColor="White" BorderThickness="2" Source="casa.png" Aspect="AspectFill" WidthRequest="85" HeightRequest="85" /> 
+                                <Label Text="IHome" TextColor="White" FontSize="Large" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Grid>
                     </Grid>
                     <TableView Intent="Menu">
                         <TableSection>
@@ -38,7 +34,7 @@
 
                             <ViewCell Tapped="GoLuzes" >
                                 <StackLayout Padding="15,10" Orientation="Horizontal">
-                                <Image Source="luminaria.png"></Image>
+                                    <Image Source="luminaria.png"></Image>
                                     <Label Text="Controle Equipamentos" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
