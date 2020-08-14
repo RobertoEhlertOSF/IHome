@@ -16,6 +16,9 @@ namespace IHome.Models
         public bool State { get; set; }
         public string Tipo { get; set; }
         public string Cor { get; set; }
+        public int StartRange { get; set; }
+        public int EndRange { get; set; }
+        public double Value { get; set; }
 
         public override string ToString()
         {

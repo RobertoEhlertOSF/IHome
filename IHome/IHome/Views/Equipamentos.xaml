@@ -9,14 +9,8 @@
              BindingContext="{Binding Source={RelativeSource Self}, Path=DefaultViewModel}">
 
     <ContentPage.Content>
-      <StackLayout Padding="10">
-            <Entry x:Name="txtNome"
-               Placeholder="Digite o nome" />
-            <Entry x:Name="txtConsumoWatts"
-               Placeholder="Digite o Consumo" />
-            <Entry x:Name="txtPino"
-               Placeholder="Digite o Pino utilizado" />
-            <Picker x:Name="PckTipo" 
+        <StackLayout Padding="10">
+            <Picker x:Name="PckTipo"  
                     Title="--Selecione o Tipo--">
                 <Picker.Items>
                     <x:String>Entrada</x:String>
@@ -24,9 +18,48 @@
                     <x:String>Analogico</x:String>
                 </Picker.Items>
             </Picker>
-            <Picker x:Name="PckCor" Title="--Selecione a cor--" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="txtNome" 
+                   Placeholder="Digite o Nome"/>
+            <Entry x:Name="txtConsumoWatts" 
+                   Placeholder="Digite o Consumo">
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference PckTipo}, Path=SelectedItem}" Value="Analogico">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Entry x:Name="txtStartRange" 
+                   Placeholder="Digite a calibragem inicial"
+                   IsVisible="False">
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference PckTipo}, Path=SelectedItem}" Value="Analogico">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Entry x:Name="txtEndRange" 
+                   Placeholder="Digite a calibragem final"
+                   IsVisible="False">
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference PckTipo}, Path=SelectedItem}" Value="Analogico">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Entry x:Name="txtPino"
+               Placeholder="Digite o Pino utilizado" />
+            <Picker x:Name="PckCor" 
+                    Title="--Selecione a Cor--"
+                    VerticalOptions="CenterAndExpand">
+                <Picker.Triggers>
+                    <DataTrigger TargetType="Picker" Binding="{Binding Source={x:Reference PckTipo}, Path=SelectedItem}" Value="Analogico">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Picker.Triggers>
+            </Picker>
             <Button Text="Adicionar ao banco de dados"
-                Clicked="CadastrarEquipamento" />
+                    Clicked="CadastrarEquipamento" 
+                    BackgroundColor="Aqua"/>
             <ListView x:Name="listView"  ItemsSource="{Binding Equipamentos}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -35,9 +68,7 @@
                                 <Label Text="{Binding}" VerticalOptions="Center"/>
                                 <Button Text="Apagar" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:EquipamentoListViewModel}}, Path=ApagarEquipamento}"                                                                             
-                                        CommandParameter="{Binding}"
-
-                                         
+                                        CommandParameter="{Binding}"                                         
                                     HorizontalOptions="EndAndExpand" />
                             </StackLayout>
                         </ViewCell>

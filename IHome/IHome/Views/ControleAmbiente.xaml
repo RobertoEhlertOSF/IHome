@@ -21,7 +21,7 @@
                 >
                 
             </Button>
-            <ScrollView>
+           <!-- <ScrollView>
                 <StackLayout Margin="15" >
                     <gauge:SfCircularGauge x:Name="cgUmidade" HeightRequest="250">
                         <gauge:SfCircularGauge.Headers>
@@ -70,8 +70,8 @@
                             </gauge:Scale>
                         </gauge:SfCircularGauge.Scales>
                     </gauge:SfCircularGauge>
-                </StackLayout>
-            </ScrollView>
+                </StackLayout> 
+            </ScrollView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

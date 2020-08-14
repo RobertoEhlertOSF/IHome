@@ -61,6 +61,13 @@ namespace IHome.Data
                             .Where(i => i.ID == id)
                             .FirstOrDefaultAsync();
         }
+        public Task<List<Equipamento>> GetEquipamentosAnalog()
+        {
+            return _database.Table<Equipamento>()
+                            .Where(i => i.Tipo.Equals("Analogico"))
+                            .ToListAsync();
+        }
+
         public Task<Evento> GetEventoAsync(int id)
         {
             return _database.Table<Evento>()

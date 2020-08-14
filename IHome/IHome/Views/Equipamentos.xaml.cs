@@ -45,24 +45,31 @@ namespace IHome.Views
 
         async void CadastrarEquipamento(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtNome.Text) && !string.IsNullOrWhiteSpace(txtConsumoWatts.Text))
-            {
-                await App.Database.SaveEquipamentoAsync(new Equipamento
-                {
-                    Nome = txtNome.Text,
-                    ConsumoWatts = Int32.Parse(txtConsumoWatts.Text),
-                    State = false,
-                    Pino = Int32.Parse(txtPino.Text),
-                    Tipo = PckTipo.SelectedItem.ToString(),
-                    Cor = cores[PckCor.SelectedItem.ToString()]
+            Equipamento equipamento = new Equipamento();
 
-                }) ;
-            }
+            equipamento.Nome = txtNome.Text;
+            equipamento.ConsumoWatts = string.IsNullOrEmpty(txtConsumoWatts.Text) ? 0 : Int32.Parse(txtConsumoWatts.Text);
+            equipamento.State = false;
+            equipamento.Pino = Int32.Parse(txtPino.Text);
+            equipamento.Tipo = PckTipo.SelectedItem.ToString();
+            equipamento.Cor = PckCor.SelectedIndex == -1 ? "0" : cores[PckCor.SelectedItem.ToString()];
+            equipamento.StartRange = string.IsNullOrEmpty(txtStartRange.Text) ? 0 : Int32.Parse(txtStartRange.Text);
+            equipamento.EndRange = string.IsNullOrEmpty(txtEndRange.Text) ? 0 : Int32.Parse(txtEndRange.Text);
+            equipamento.Value= 0;
+            await App.Database.SaveEquipamentoAsync(equipamento);
 
             txtNome.Text = string.Empty;
             txtConsumoWatts.Text = string.Empty;
             txtPino.Text = string.Empty;
+            PckCor.SelectedIndex = -1;
+            PckTipo.SelectedIndex = -1;
+            txtPino.Text = string.Empty;
+            txtStartRange.Text = string.Empty;
+            txtEndRange.Text = string.Empty;
+
             listView.ItemsSource = await App.Database.GetEquipamentosAsync();
+
+
 
         }
 
