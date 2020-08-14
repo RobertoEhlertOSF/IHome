@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using SkiaSharp;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,7 @@ namespace IHome.Models
         public int Pino { get; set; }
         public bool State { get; set; }
         public string Tipo { get; set; }
+        public string Cor { get; set; }
 
         public override string ToString()
         {

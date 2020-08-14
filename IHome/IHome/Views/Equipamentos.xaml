@@ -24,6 +24,7 @@
                     <x:String>Analogico</x:String>
                 </Picker.Items>
             </Picker>
+            <Picker x:Name="PckCor" Title="--Selecione a cor--" VerticalOptions="CenterAndExpand"/>
             <Button Text="Adicionar ao banco de dados"
                 Clicked="CadastrarEquipamento" />
             <ListView x:Name="listView"  ItemsSource="{Binding Equipamentos}">
@@ -35,6 +36,7 @@
                                 <Button Text="Apagar" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:EquipamentoListViewModel}}, Path=ApagarEquipamento}"                                                                             
                                         CommandParameter="{Binding}"
+
                                          
                                     HorizontalOptions="EndAndExpand" />
                             </StackLayout>
