@@ -24,6 +24,15 @@ namespace IHome
         {
             ScrollView scroll = new ScrollView();
             StackLayout stack = new StackLayout();
+            Label label = new Label()
+            {
+                Margin = 20,
+                Text = "Consumo de Equipamentos",
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 15,
+                HorizontalTextAlignment = TextAlignment.Center
+            };
+            stack.Children.Add(label);
 
             RefreshView refresh = new RefreshView();
             ICommand atualizar = new Command(() =>

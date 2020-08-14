@@ -7,9 +7,15 @@
              x:Class="IHome.Views.Sobre">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Sobre este Trabalho de Conclusão de Curso:"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="Todos os créditos de imagens e ícones vão para https://www.flaticon.com/br/autores e https://pixabay.com/"/>
+                <Label Text="O objetivo deste aplicativo é demonstrar a fácil implementação com o microcontrolador Nodemcu."/>
+                <Label Text ="Desenvolvido por Roberto Ehlert Neto, para o projeto de conclusão de curso de engenharia da computação." FontSize="Small"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
