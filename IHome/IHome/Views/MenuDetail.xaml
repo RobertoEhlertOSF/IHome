@@ -6,8 +6,8 @@
              mc:Ignorable="d"
              x:Class="IHome.MenuDetail">
     <ContentPage.Content>
-        <StackLayout>
-            <Image Source="teste.jpg" Aspect="AspectFill"/>
+        <StackLayout BackgroundColor="Black">
+            <Image Source="capa.jpg" Aspect="AspectFill" />            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
