@@ -14,7 +14,6 @@ namespace IHome.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Equipamentos : ContentPage
     {
-
         Dictionary<string, string> cores = new Dictionary<string, string>
         {
             { "Amarelo", "#FFFF00"},
@@ -26,6 +25,14 @@ namespace IHome.Views
             { "Verde",   "#00FF00"},
             { "Vermelho","#FF0000"},
         };
+        Dictionary<string, string> sensores = new Dictionary<string, string>
+        {
+            { "Sensor de Chuva"       ,    "GETCHUVA"},
+            { "Sensor de Luz"         ,       "GETLUZ"},
+            { "Sensor de Temperatura" ,      "GETTEMP"},
+            { "Sensor de Umidade"     ,   "GETUMIDADE"}
+
+        };
         public Equipamentos()
         {
             InitializeComponent();
@@ -33,6 +40,11 @@ namespace IHome.Views
             foreach (string colorName in cores.Keys)
             {
                 PckCor.Items.Add(colorName);
+            }
+
+            foreach (string sensor in sensores.Keys)
+            {
+                PckSensor.Items.Add(sensor);
             }
 
         }
@@ -50,12 +62,13 @@ namespace IHome.Views
             equipamento.Nome = txtNome.Text;
             equipamento.ConsumoWatts = string.IsNullOrEmpty(txtConsumoWatts.Text) ? 0 : Int32.Parse(txtConsumoWatts.Text);
             equipamento.State = false;
-            equipamento.Pino = Int32.Parse(txtPino.Text);
+            equipamento.Pino = string.IsNullOrEmpty(txtPino.Text) ? -1 : Int32.Parse(txtPino.Text);
             equipamento.Tipo = PckTipo.SelectedItem.ToString();
             equipamento.Cor = PckCor.SelectedIndex == -1 ? "0" : cores[PckCor.SelectedItem.ToString()];
             equipamento.StartRange = string.IsNullOrEmpty(txtStartRange.Text) ? 0 : Int32.Parse(txtStartRange.Text);
             equipamento.EndRange = string.IsNullOrEmpty(txtEndRange.Text) ? 0 : Int32.Parse(txtEndRange.Text);
             equipamento.Value= 0;
+            equipamento.Sensor = PckSensor.SelectedIndex == -1 ? "0" : sensores[PckSensor.SelectedItem.ToString()];
             await App.Database.SaveEquipamentoAsync(equipamento);
 
             txtNome.Text = string.Empty;

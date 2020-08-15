@@ -1,4 +1,5 @@
 ﻿using Android.Util;
+using IHome.Data;
 using IHome.Models;
 using IHome.Services;
 using Syncfusion.SfGauge.XForms;
@@ -64,7 +65,7 @@ namespace IHome
                 scale.Ranges.Add(range);
 
                 NeedlePointer needlePointer = new NeedlePointer();
-                needlePointer.Value = equipamento.Value;
+                needlePointer.Value = string.IsNullOrEmpty(equipamento.Value.ToString()) ? 0 : equipamento.Value;
                 scale.Pointers.Add(needlePointer);
 
                 scales.Add(scale);
@@ -85,9 +86,11 @@ namespace IHome
                 List<Equipamento> equipamentos = await App.Database.GetEquipamentosAnalog();
                 foreach (Equipamento equipamento in equipamentos)
                 {
-                    equipamento.Value =  Double.Parse(ServiceIO.ActionIO(equipamento.Pino, true, equipamento.Tipo).ToString()) / 100;
+                    string valor = ServiceIO.ActionIO(equipamento, true).Result;
+                    equipamento.Value =  Double.Parse(valor) / 100;
+                    await App.Database.SaveEquipamentoAsync(equipamento);
                 }
-
+                InitializeGraphs();
             }
             catch (Exception ex)
             {

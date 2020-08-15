@@ -19,6 +19,7 @@ namespace IHome.Models
         public int StartRange { get; set; }
         public int EndRange { get; set; }
         public double Value { get; set; }
+        public string Sensor { get; set; }
 
         public override string ToString()
         {

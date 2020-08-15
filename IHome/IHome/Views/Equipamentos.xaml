@@ -47,13 +47,29 @@
                 </Entry.Triggers>
             </Entry>
             <Entry x:Name="txtPino"
-               Placeholder="Digite o Pino utilizado" />
+               Placeholder="Digite o Pino utilizado" >
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference PckTipo}, Path=SelectedItem}" Value="Analogico">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
             <Picker x:Name="PckCor" 
                     Title="--Selecione a Cor--"
                     VerticalOptions="CenterAndExpand">
                 <Picker.Triggers>
                     <DataTrigger TargetType="Picker" Binding="{Binding Source={x:Reference PckTipo}, Path=SelectedItem}" Value="Analogico">
                         <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Picker.Triggers>
+            </Picker>
+            <Picker x:Name="PckSensor" 
+                    Title="--Selecione o Sensor--"
+                    IsVisible="False"
+                    VerticalOptions="CenterAndExpand">
+                <Picker.Triggers>
+                    <DataTrigger TargetType="Picker" Binding="{Binding Source={x:Reference PckTipo}, Path=SelectedItem}" Value="Analogico">
+                        <Setter Property="IsVisible" Value="true"/>
                     </DataTrigger>
                 </Picker.Triggers>
             </Picker>

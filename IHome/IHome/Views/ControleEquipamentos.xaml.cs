@@ -28,14 +28,14 @@ namespace IHome
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            listView.ItemsSource = await App.Database.GetEquipamentosAsync();
+            listView.ItemsSource = await App.Database.GetEquipamentosNotAnalog();
         } 
 
         private async void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
         {
             var changed = ((SwitchCell)sender).BindingContext as Equipamento;
             RegistrarEvento(changed.ID, e.Value);
-            await ServiceIO.ActionIO(changed.Pino, e.Value, changed.Tipo);
+            await ServiceIO.ActionIO(changed, e.Value);
             await App.Database.SaveEquipamentoAsync(changed);
         }
 
@@ -57,16 +57,6 @@ namespace IHome
                 evento.EndDateTime = DateTime.Now;
                 await App.Database.SaveEventosAsync(evento);
             }
-        }
-
-        private void BtLigarTudo_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtDesligarTudo_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -68,6 +68,13 @@ namespace IHome.Data
                             .ToListAsync();
         }
 
+        public Task<List<Equipamento>> GetEquipamentosNotAnalog()
+        {
+            return _database.Table<Equipamento>()
+                            .Where(i => !i.Tipo.Equals("Analogico"))
+                            .ToListAsync();
+        }
+
         public Task<Evento> GetEventoAsync(int id)
         {
             return _database.Table<Evento>()

@@ -1,4 +1,5 @@
 ﻿using Android.Util;
+using IHome.Models;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -18,8 +19,13 @@ namespace IHome.Services
             {
                 using (var client = new HttpClient())
                 {
-                    var response = await client.SendAsync(request);
-                    return await response.Content.ReadAsStringAsync();
+                    var response = await client.SendAsync(request).ConfigureAwait(false);
+                    if (response.IsSuccessStatusCode)
+                    {   
+                        var res = await response.Content.ReadAsStringAsync().ConfigureAwait(false); ;
+                        return res;
+                    }
+                    return ("Houve um problema de conexão com o servidor!");
                 };
 
             }
@@ -29,12 +35,14 @@ namespace IHome.Services
             }
         }
 
-        public static async Task<string> ActionIO(int pin, bool value, string tipo)
-        {
+        public static async Task<string> ActionIO(Equipamento equip, bool value)
+         {
             string UrlServidor = Util.GetServerConfig();
             string type = string.Empty;
+            bool isSensor = false;
+            string uri;
 
-            switch (tipo)
+            switch (equip.Tipo)
             {
                 case ("Entrada"):
                     type = "PIN";
@@ -43,24 +51,29 @@ namespace IHome.Services
                     type = "POU";
                     break;
                 case ("Analogico"):
-                    type = "PAN";
+                    type = equip.Sensor;
+                    isSensor = true;
                     break;
                 default:
                     break;
             }
-            string uri;
-            if (value)
+
+            if (value && !isSensor)
             {
-                uri = UrlServidor + type + pin.ToString() + "=ON";
+                uri = UrlServidor + type + equip.Pino.ToString() + "=ON";
+            }
+            else if(!isSensor)
+            {
+                uri = UrlServidor + type + equip.Pino + "=OFF";
             }
             else
             {
-                uri = UrlServidor + type + pin.ToString() + "=OFF";
+                uri = UrlServidor + type + "=ON";
             }
-            
+
             try
             {
-                return await DoGet(uri);
+                return await DoGet(uri).ConfigureAwait(continueOnCapturedContext: false); 
             }
             catch (Exception e)
             {
