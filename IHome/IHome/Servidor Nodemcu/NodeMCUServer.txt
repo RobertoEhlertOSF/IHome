@@ -1,0 +1,253 @@
+#include <ESP8266WiFi.h>
+
+#include <ESP8266WebServer.h>
+
+#include <DHT.h>
+
+#include <Adafruit_Sensor.h>
+
+
+
+const char * ssid = "TUCA";
+const char * password = "********";
+#define DHTTYPE DHT11
+
+//Variáveis dos GPIOs
+int Pin0 = 16;
+int Pin1 = 5;
+int Pin2 = 4;
+int Pin3 = 0;
+int Pin4 = 2;
+int Pin5 = 14;
+int Pin6 = 12;
+int Pin7 = 13;
+int Pin8 = 15;
+DHT dht(Pin7, DHTTYPE);
+//int chuvaPin = 16;
+//int chuvapinA = 0;
+
+
+// Porta de comunicacao (normalmente se utiliza a 80 ou 8080)
+ESP8266WebServer server(80);
+
+void setup() {
+  //Inicialização de frequência de banda.
+  Serial.begin(57600);
+  delay(10);
+
+  //Inicialização dos Pinos
+  pinMode(Pin0, OUTPUT);
+  pinMode(Pin1, OUTPUT);
+  pinMode(Pin2, OUTPUT);
+  pinMode(Pin3, OUTPUT);
+  pinMode(Pin4, OUTPUT);
+  pinMode(Pin5, OUTPUT);
+  pinMode(Pin6, INPUT);
+  pinMode(Pin7, INPUT);
+  pinMode(Pin8, OUTPUT);
+
+  //Ao iniciar, os GPIOs sao resetados ao nível baixo.
+  digitalWrite(Pin0, LOW);
+  digitalWrite(Pin1, LOW);
+  digitalWrite(Pin2, LOW);
+  digitalWrite(Pin3, LOW);
+  digitalWrite(Pin4, LOW);
+  digitalWrite(Pin5, LOW);
+  digitalWrite(Pin6, LOW);
+  digitalWrite(Pin7, LOW);
+  digitalWrite(Pin8, LOW);
+
+  //Inicializando DHT11
+  dht.begin();
+
+  //Credenciais do Webserver
+  // WiFi.softAP(ssid, password);
+   WiFi.begin(ssid, password);
+
+  delay(100);
+ int i = 0;
+  while (WiFi.status() != WL_CONNECTED) { // Wait for the Wi-Fi to connect
+    delay(1000);
+    Serial.print(++i); Serial.print(' ');
+  }
+
+  // Print the IP address
+  Serial.print('\n');
+  Serial.print("IP para conexao: ");
+  Serial.print("http://");
+  Serial.print(WiFi.localIP());
+  Serial.println("/");
+
+
+  //Handle dos métodos GET
+  server.on("/PIN0=ON", LigarPin0);
+  server.on("/PIN0=OFF", DesligarPin0);
+  server.on("/PIN1=ON", LigarPin1);
+  server.on("/PIN1=OFF", DesligarPin1);
+  server.on("/PIN2=ON", LigarPin2);
+  server.on("/PIN2=OFF", DesligarPin2);
+  server.on("/PIN3=ON", LigarPin3);
+  server.on("/PIN3=OFF", DesligarPin3);
+  server.on("/PIN4=ON", LigarPin4);
+  server.on("/PIN4=OFF", DesligarPin4);
+  server.on("/PIN5=ON", LigarPin5);
+  server.on("/PIN5=OFF", DesligarPin5);
+  server.on("/PIN6=ON", LigarPin6);
+  server.on("/PIN6=OFF", DesligarPin6);
+  server.on("/PIN7=ON", LigarPin7);
+  server.on("/PIN7=OFF", DesligarPin7);
+  server.on("/PIN8=ON", LigarPin8);
+  server.on("/PIN8=OFF", DesligarPin8);
+  server.on("/GETLUZ=ON", GetLuz);
+  server.on("/GETTEMP=ON", GetTemperatura);
+  server.on("/GETUMIDADE=ON", GetUmidade);
+  server.on("/GETCHUVA=ON", GetChuva);
+
+  //Inicialização do Servidor
+  server.begin();
+  Serial.println("HTTP Server iniciado!");
+ // pinMode(DHTPIN, INPUT);
+  dht.begin();
+
+}
+
+//Servidor ativo para atender as chamadas dos clientes.
+void loop() {
+  server.handleClient();
+}
+
+//Declaração dos Métodos
+void LigarPin0() {
+  digitalWrite(Pin0, HIGH);
+  Serial.println("Pino 0, LIGADO");
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin0() {
+  digitalWrite(Pin0, LOW);
+  Serial.println("Pino 0, DESLIGADO");
+  server.send(200, "text/plain", "true");
+}
+void LigarPin1() {
+  digitalWrite(Pin1, HIGH);
+  Serial.println("Pino 1, LIGADO");
+
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin1() {
+  digitalWrite(Pin1, LOW);
+  server.send(200, "text/plain", "false");
+}
+void LigarPin2() {
+  digitalWrite(Pin2 , HIGH);
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin2() {
+  digitalWrite(Pin2, LOW);
+  server.send(200, "text/plain", "false");
+}
+void LigarPin3() {
+  digitalWrite(Pin3, HIGH);
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin3() {
+  digitalWrite(Pin3, LOW);
+  server.send(200, "text/plain", "false");
+}
+
+void LigarPin4() {
+  digitalWrite(Pin4, HIGH);
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin4() {
+  digitalWrite(Pin4, LOW);
+  server.send(200, "text/plain", "false");
+}
+
+void LigarPin5() {
+  digitalWrite(Pin5, HIGH);
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin5() {
+  digitalWrite(Pin5, LOW);
+  server.send(200, "text/plain", "false");
+}
+
+void LigarPin6() {
+  digitalWrite(Pin6, HIGH);
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin6() {
+  digitalWrite(Pin6, LOW);
+  server.send(200, "text/plain", "false");
+}
+
+void LigarPin7() {
+  digitalWrite(Pin7, HIGH);
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin7() {
+  digitalWrite(Pin7, LOW);
+  server.send(200, "text/plain", "false");
+}
+
+void LigarPin8() {
+  digitalWrite(Pin8, HIGH);
+  server.send(200, "text/plain", "true");
+}
+void DesligarPin8() {
+  digitalWrite(Pin8, LOW);
+  server.send(200, "text/plain", "false");
+}
+
+void GetLuz(){
+  char value[8];
+  int sensorValue = analogRead(A0);   // read the input on analog pin 0
+  float voltage = sensorValue * (3.3 / 1023.0);   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V)
+  dtostrf(voltage, 6, 2, value);
+  Serial.println(value);   // print out the value you read
+  server.send(200, "text/plain", value);
+}
+
+void GetTemperatura() {
+  char temp[8];
+  float t = 0.0;
+  t = dht.readTemperature();
+  if (isnan(t)) {
+    Serial.println(dht.readTemperature());
+    server.send(200, "text/plain", "-999");
+  } else {
+    dtostrf(t, 6, 2, temp);
+    Serial.println("Temperatura: ");
+    Serial.println(temp);
+    server.send(200, "text/plain", temp);
+  }
+}
+
+void GetUmidade() {
+  char umid[8];
+  float t = 0.0;
+  t = dht.readHumidity();
+  if (isnan(t)) {
+    server.send(200, "text/plain", "-999");
+  } else {
+    dtostrf(t, 6, 2, umid);
+    Serial.println("Umidade: ");
+    Serial.println(umid);
+    server.send(200, "text/plain", umid);
+  }
+}
+
+void GetChuva() {
+  char rain[8];
+  float r = 0.0;
+  r = analogRead(0);
+  if (isnan(r)) {
+    server.send(200, "text/plain", "-999");
+  } else {
+    r = (r - 1024) * (-1);
+    dtostrf(r, 6, 2, rain);
+    Serial.println("Chuva: ");
+    Serial.println(rain);
+    server.send(200, "text/plain", rain);
+  }
+}
